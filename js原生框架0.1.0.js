@@ -254,7 +254,17 @@
 				});
 				return itcast(itcast.unique(ret));
 		},
-		
+		remove : function (){
+			return this.each(function (index, elem) {
+				elem.parentNode.removeChild(this);
+			});
+		},
+		//将itcast对象上所有dom元素清空
+		empty:function(){
+			return this.each(function ( i, elem){
+				elem.innerHTML='';
+			})
+		}
 
 	})
 
