@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>appendTo方法检测</title>
+    </head>
+    <body>
+    <div id="dd">123</div>
+    <p>456</p>
+    <script src="jquery.js"></script>
+    <!-- <script src='js原生框架0.1.0.js'></script> -->
+    <script>
+    var jq=$('#dd').appendTo(document.getElementsByTagName('p'));
+    console.log(jq);
+    </script>
+    </body>
+</html>

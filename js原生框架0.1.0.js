@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-03-17 22:21:24
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-03-18 09:22:17
+* @Last Modified time: 2017-03-18 19:18:06
 */
 (function (global){
 	'use strict';
@@ -58,10 +58,10 @@
 			if(itcast.isHTML(selector)){
 				push.apply(this,itcast.parseHTML(selector));
 			}else{
-				console.log(document.querySelectorAll(selector));
-				console.log(typeof selector);
+				// console.log(document.querySelectorAll(selector));
+				// console.log(typeof selector);
 				push.apply(this,document.querySelectorAll( selector ));
-				console.log(this+1);
+				// console.log(this+1);
 			}
 		}else if(itcast.isDOM(selector)){
 			this[0]=selector;
@@ -77,7 +77,7 @@
 	}
 	init.prototype=itcast.fn;
 	//混入式继承
-	itcast.extend=function (){
+	itcast.extend=itcast.fn.extend=function (){
 		var ags=arguments,
 			i=0,
 			l=ags.length,
@@ -152,7 +152,7 @@
 			if(itcast.isFunction(obj) || itcast.isWindow(obj)){
 				return false;
 			}
-			return type ==='array' || lenght===0 || 
+			return type ==='array' || length===0 || 
 				typeof length ==='number' && (length-1) in obj && length>0;
 
 		},
@@ -164,5 +164,34 @@
 		}
 
 	})
-	global.$=itcast;
+	//DOM模块
+	itcast.fn.extend({
+		//appendTo方法：将itcast对象上的所有dom元素，分别追加给目标元素。
+		appendTo:function (target){
+			target=itcast(target);
+			var node,
+				that=this,
+				ret=[];
+			target.each(function (i,elem) {
+				that.each(function (){
+					node=i===0 ? this : this.cloneNode(true);
+					elem.appendChild(node);
+					ret.push(node);
+
+				})
+			})
+			return itcast(ret);
+		}
+		
+	})
+
+	if ( typeof define === 'function' ){
+    define( function (){
+      return itcast;
+    } );
+  } else if ( typeof exports !== 'undefined' ) {
+    module.exports = itcast;
+  } else {
+    global.$ = itcast;
+  }
 }(window))
