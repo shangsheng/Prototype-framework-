@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-03-17 22:21:24
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-03-18 19:31:10
+* @Last Modified time: 2017-03-18 19:34:57
 */
 (function (global){
 	'use strict';
@@ -187,7 +187,8 @@
 			source=itcast(source);
 			source.appendTo(this);
 			return this;
-		}
+		},
+		next:function ()
 		
 	})
 
