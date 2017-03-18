@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-03-17 22:21:24
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-03-18 19:18:06
+* @Last Modified time: 2017-03-18 19:31:10
 */
 (function (global){
 	'use strict';
@@ -181,6 +181,12 @@
 				})
 			})
 			return itcast(ret);
+		},
+		//将source上的所有元素，追加给itcast对象。
+		append:function( source ){
+			source=itcast(source);
+			source.appendTo(this);
+			return this;
 		}
 		
 	})

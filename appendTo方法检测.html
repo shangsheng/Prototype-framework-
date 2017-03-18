@@ -7,10 +7,11 @@
     <body>
     <div id="dd">123</div>
     <p>456</p>
-    <script src="jquery.js"></script>
-    <!-- <script src='js原生框架0.1.0.js'></script> -->
+    <!-- <script src="jquery.js"></script> -->
+    <script src='js原生框架0.1.0.js'></script>
     <script>
-    var jq=$('#dd').appendTo(document.getElementsByTagName('p'));
+    // var jq=$('#dd').appendTo(document.getElementsByTagName('p'));
+    var jq=$('div').append('<span>789</span>');
     console.log(jq);
     </script>
     </body>
