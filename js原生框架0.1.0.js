@@ -3,7 +3,7 @@
 * @Date:   2017-03-17 22:21:24
 * @Last Modified by:   Administrator
 <<<<<<< HEAD
-* @Last Modified time: 2017-03-18 20:28:28
+* @Last Modified time: 2017-03-18 20:46:42
 =======
 * @Last Modified time: 2017-03-18 19:57:58
 >>>>>>> dev-next
@@ -202,6 +202,22 @@
 			source=itcast(source);
 			source.appendTo(this);
 			return this;
+		},
+		prependTo:function(target){
+			target=itcast(target);
+			var ret=[],
+				node,
+				that=this,
+				firstChild;
+			target.each(function (i,elem) {
+				firstChild=elem.firstChild;
+				that.each(function (){
+					node=i==0? this:this.cloneNode(true);
+					ret.push(node);
+					elem.insertBefore(this,firstChild);
+				})
+			});
+			return itcast(ret);
 		},
 
 		//获取itcast对象上的所有dom元素的下一个兄弟元素节点，返回值为 itcast对象
