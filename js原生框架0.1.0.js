@@ -3,7 +3,7 @@
 * @Date:   2017-03-17 22:21:24
 * @Last Modified by:   Administrator
 <<<<<<< HEAD
-* @Last Modified time: 2017-03-18 20:02:22
+* @Last Modified time: 2017-03-18 20:28:28
 =======
 * @Last Modified time: 2017-03-18 19:57:58
 >>>>>>> dev-next
@@ -136,6 +136,17 @@
 					}
 				}
 				return art;
+		},
+		//数组去重
+		unique:function( arr ){
+			var art=[];
+			itcast.each(arr ,function (){
+				if (art.indexOf(this)===-1 ) {
+					art.push(this);
+
+				}
+			})
+			return art;
 		}
 	})
 	itcast.extend({
@@ -208,8 +219,22 @@
 				}
 			});
 			return itcast (ret);
+		},
+		nextAll:function(){
+			var ret=[],
+				node;
+				this.each(function (i,elem) {
+					node=elem.nextSibling;
+					while (node){
+						if(node.nodeType===1){
+							ret.push(node);
+						}
+						node=node.nextSibling;
+					}
+				});
+				return itcast(itcast.unique(ret));
 		}
->>>>>>> dev-next
+
 	})
 
 	if ( typeof define === 'function' ){
