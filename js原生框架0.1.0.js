@@ -232,6 +232,7 @@
 			});
 			return itcast (ret);
 		},
+		//获取itcast对象上的所有dom元素的下面所有兄弟元素节点，返回值为 itcast对象
 		nextAll:function(){
 			var ret=[],
 				node;
@@ -245,7 +246,8 @@
 					}
 				});
 				return itcast(itcast.unique(ret));
-		}
+		},
+		
 
 	})
 
