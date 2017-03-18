@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-03-17 22:21:24
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-03-18 19:31:10
+* @Last Modified time: 2017-03-18 19:57:58
 */
 (function (global){
 	'use strict';
@@ -187,8 +187,23 @@
 			source=itcast(source);
 			source.appendTo(this);
 			return this;
+		},
+		//获取itcast对象上的所有dom元素的下一个兄弟元素节点，返回值为 itcast对象
+		next:function (){
+			var ret=[],
+				node;
+			this.each(function (i,elem){
+				node=elem.nextSibling;
+				while(node){
+					if(node.nodeType===1){
+						ret.push(node);
+						break;
+					}
+					node=node.nextSibling;
+				}
+			});
+			return itcast (ret);
 		}
-		
 	})
 
 	if ( typeof define === 'function' ){
