@@ -199,6 +199,7 @@
 			source.appendTo(this);
 			return this;
 		},
+		//将itcast对象上的所有dom元素，追加到目标元素的最前边
 		prependTo:function(target){
 			target=itcast(target);
 			var ret=[],
@@ -214,6 +215,12 @@
 				})
 			});
 			return itcast(ret);
+		},
+		//将source上的所有元素，追加到itcast对象上所有目标元素的最前边
+		prepend:function(source){
+			source=itcast(source);
+			source.prependTo(this);
+			return this;
 		},
 
 		//获取itcast对象上的所有dom元素的下一个兄弟元素节点，返回值为 itcast对象
