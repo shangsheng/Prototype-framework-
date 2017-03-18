@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+			a{
+				display:  block;
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+        </style>
+
+    </head>
+    <body>
+    <div>
+    	<p>123</p>
+    	<p>455</p>
+    </div>
+    <p>678</p>
+    <a href=""></a>
+    <script src="js原生框架0.1.0.js"></script>	
+    <script>
+    // var jq=$('p').before(document.getElementsByTagName('a'));
+    var jq=$('p').after('f');
+    console.log(jq);
+    </script>
+    </body>
+</html>

@@ -264,8 +264,27 @@
 			return this.each(function ( i, elem){
 				elem.innerHTML='';
 			})
-		}
+		},
+		//在itcast对象所有元素的前面添加node节点
+		before:function(node){
+			return this.each(function (i,elem){
+				node = itcast(itcast.isString(node)? document.createTextNode(node):node);
+				node.each(function (j ,cur){
+					elem.parentNode.insertBefore(i===0? cur : cur.cloneNode(true),elem);
+				})
+			})
+		},
+		//在itcast对象所有元素的后面面添加node节点
+		after:function (node){
+			return this.each(function (i,elem){
+				var nextSibling=elem.nextSibling;
+				node = itcast(itcast.isString(node)? document.createTextNode(node):node);
+				node.each(function (j ,cur){
+					elem.parentNode.insertBefore(i===0? cur : cur.cloneNode(true),nextSibling);
+				})
+			})
 
+		}
 	})
 
 	if ( typeof define === 'function' ){
