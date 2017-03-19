@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>检测样式模块</title>
+        <style>
+			.cc{
+				width: 100px;
+				height: 100px;
+				background-color: yellow;
+				margin: 10px;
+			}
+        </style>
+    </head>
+    <body>
+	<div id="dd" class="cc">div</div>
+	<div>2</div>
+	<button id="btn">设置</button>
+	<script src="jquery.js"></script>
+	<!-- <script src="js原生框架0.2.0.js"></script> -->
+	<script>
+	document.getElementById('btn').onclick=function(){
+		// var jq=$('#dd').hasClass('cc');
+			var jq=$('div').addClass('cc');
+		console.log(jq);
+	}
+	</script>
+    </body>
+</html>

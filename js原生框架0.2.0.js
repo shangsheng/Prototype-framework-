@@ -291,7 +291,7 @@ itcast.propFix={
 	'class':'className',
 	'for':'htmlFor'
 };
-itcast,each([
+itcast.each([
 	"tabIndex",
 	"readOnly",
 	"maxLength",
@@ -382,8 +382,29 @@ itcast.fn.extend({
 			}
 			return this;
 		}
-
-	
+});
+//样式模块
+itcast.fn.extend({
+	//只要在itcast对象上有一个DOM元素具有指定的样式类，该方法就返回true；否则就返回false
+	hasClass:function(className){
+		var ret=false;
+		this.each(function (i,elem){
+			if(elem.classList.contains(className)){
+				ret=true;
+				return false;
+			}
+		})
+		return ret;
+	},
+	//给itcast对象上所有DOM元素添加样式类
+	addClass:function( className ){
+		this.each(function(){
+			if( !this.classList.contains(className)){
+				this.classList.add(className);
+			}
+		})
+		return this;
+	}
 })
 	if ( typeof define === 'function' ){
     define( function (){
