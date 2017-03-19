@@ -404,6 +404,23 @@ itcast.fn.extend({
 			}
 		})
 		return this;
+	},
+	removeClass:function(className){
+		return this.each(function(){
+			if(this.classList.contains(className)){
+				this.classList.remove(className);
+			}
+		})
+
+	},
+	toggleClass:function(className){
+		return this.each(function(){
+			if(this.classList.contains(className)){
+				this.classList.toggle(className);
+			}else{
+				this.classList.toggle(className);
+			}
+		})
 	}
 })
 	if ( typeof define === 'function' ){

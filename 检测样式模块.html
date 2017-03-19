@@ -16,12 +16,14 @@
 	<div id="dd" class="cc">div</div>
 	<div>2</div>
 	<button id="btn">设置</button>
-	<script src="jquery.js"></script>
-	<!-- <script src="js原生框架0.2.0.js"></script> -->
+	<!-- <script src="jquery.js"></script> -->
+	<script src="js原生框架0.2.0.js"></script>
 	<script>
 	document.getElementById('btn').onclick=function(){
 		// var jq=$('#dd').hasClass('cc');
-			var jq=$('div').addClass('cc');
+			// var jq=$('div').addClass('cc');
+			// var jq=$('div').removeClass('cc');
+			var jq=$('div').toggleClass('cc');
 		console.log(jq);
 	}
 	</script>
