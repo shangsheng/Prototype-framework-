@@ -307,6 +307,26 @@ itcast.fn.extend({
 			})
 		}
 		return this;
+	},
+	//获取和设置DOM对象的属性值
+	prop:function(name,value){
+		if(value == undefined){
+			if(name === 'object'){
+				this.each(function (i,elem){
+					for(var k in name){
+						//给遍历到的dom对象，设置当前遍历的属性值；
+						elem[k]=name[k];
+					}
+				});
+			}else{
+				return this.length ===0 ? undefined : this[0][name];
+			}
+		}else{
+			this.each(function(){
+				this[name]=value;
+			})
+		}
+
 	}
 })
 	if ( typeof define === 'function' ){

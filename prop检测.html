@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>prop检测</title>
+    </head>
+    <body>
+    <div id="dd">123</div>
+    <div id='mm'>456</div>
+    <button id='btn'>获取和设置</button>
+    <input type="text" value id='in'>
+    <!-- <script src="jquery.js"></script> -->
+    <script src="js原生框架0.2.0.js"></script>
+    <script>
+    document.getElementById('btn').onclick=function(){
+    	 var jq=$('').prop('value');
+    console.log(jq);
+    }
+   
+    </script>
+    </body>
+</html>
