@@ -286,6 +286,25 @@
 
 		}
 	})
+//处理保留词和不是驼峰命名法的属性
+itcast.propFix={
+	'class':'className',
+	'for':'htmlFor'
+};
+itcast,each([
+	"tabIndex",
+	"readOnly",
+	"maxLength",
+	"cellSpacing",
+	"rowSan",
+	"colSpan",
+	"useMap",
+	"frameBorder",
+	"contentEdotable"
+	],function(){//this.toLowerCase()数组中的元素转化成小写作为对象propFix的属性，
+					//this为属性值
+		itcast.propFix[this.toLowerCase()]=this;
+	});
 //属性模块
 itcast.fn.extend({
 	//获取和设置DOM元素的属性节点值
@@ -310,6 +329,7 @@ itcast.fn.extend({
 	},
 	//获取和设置DOM对象的属性值
 	prop:function(name,value){
+		var propName;//用来存储propFix对象上的属性值
 		if(value == undefined){
 			if(name === 'object'){
 				this.each(function (i,elem){
@@ -325,9 +345,45 @@ itcast.fn.extend({
 			this.each(function(){
 				this[name]=value;
 			})
+		 }
+		},
+		val :function(value){
+			if(value ==undefined){
+				return this.length ===0? undefined : this[0].value;
+			}else{
+			return this.each(function (){
+					this.value=value;
+				})
+			}
+
+		},
+		html:function(html){
+			if(html == undefined){
+				return this.length ===0 ? undefined : this[0].innerHTML;
+			}else{
+				return this.each(function(){
+					this.innerHTML=html;
+				})
+			}
+		},
+		text:function(txt){
+			if(txt == undefined){
+				if(this.length===0){
+					return undefined;
+				}else{
+					this.each(function(index, elem) {
+						elem.textContent;
+					});
+				}
+			}else{
+				this.each(function(){
+					this.textContent=txt;
+				})
+			}
+			return this;
 		}
 
-	}
+	
 })
 	if ( typeof define === 'function' ){
     define( function (){

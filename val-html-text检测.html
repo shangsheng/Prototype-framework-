@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>val-html-text检测</title>
+    </head>
+    <body>
+    <div id="dd">
+    	789
+    	<p>123</p>
+    </div>
+    <input type="text" id="text" value="text">
+    <label for="nan">男</label><input type="radio" value='boy' id="nan" name='sex'>
+    <label for="nv">女</label><input type="radio" value='gril' id='nv' name='sex'>
+    <div class="vv">456</div>
+    <button id='btn'>获取设置</button>
+    <!-- <script src="jquery.js"></script> -->
+    <script src="js原生框架0.2.0.js"></script>
+    <script>
+    document.getElementById('btn').onclick=function(){
+    	
+    	console.log($('input').val());
+    	console.log( $( '#text' ).val() );
+      console.log( $( 'input[name=sex]:checked' ).val() );
+      console.log( $( '#dd' ).html() );
+      console.log( $( '#dd' ).html('我是设置的字体') );
+    }
+    </script>
+    </body>
+</html>
