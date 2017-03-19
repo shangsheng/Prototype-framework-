@@ -286,7 +286,29 @@
 
 		}
 	})
-
+//属性模块
+itcast.fn.extend({
+	//获取和设置DOM元素的属性节点值
+	attr:function(name ,value){
+		//判断value的值是否为undefined如果是则传入一个参数否则是两个
+		if(value == undefined){
+			if(typeof name === 'object'){
+				this.each(function(){
+					for(var k in name){
+						this.setAttribute(k, name[k]);
+					}
+				});
+			}else{//获取itcast对象的第一个元素的属性节点值
+				return this.length ===0 ? undefined : this[0].getAttribute(name);
+			}
+		}else{
+			this.each(function(){
+				this.setAttribute(name, value);
+			})
+		}
+		return this;
+	}
+})
 	if ( typeof define === 'function' ){
     define( function (){
       return itcast;
