@@ -284,7 +284,35 @@
 				})
 			})
 
+		},
+		prev :function(){
+			var ret=[];
+			 this.each(function (i,elem){
+				var node=elem.previousSibling;//获取上一个同级元素
+				while(node){
+					if(node.nodeType===1){
+						ret.push(node);
+						break;
+					}
+					node=node.previousSibling;
+				}
+			} )
+			 return itcast(ret);
+		},
+		prevAll:function(){
+			var ret=[];
+			this.each(function(){
+				var node=this.previousSibling;
+				while(node){
+					if(node.nodeType===1){
+						ret.push(node);
+					}
+					node=node.previousSibling;
+				}
+			});
+			return itcast(itcast.unique(ret));
 		}
+
 	})
 //处理保留词和不是驼峰命名法的属性
 itcast.propFix={
@@ -406,21 +434,34 @@ itcast.fn.extend({
 		return this;
 	},
 	removeClass:function(className){
-		return this.each(function(){
+		if(className == undefined){
+			return this.each(function(){
+				this.className="";
+			})
+
+		}else{
+			return this.each(function(){
 			if(this.classList.contains(className)){
 				this.classList.remove(className);
 			}
 		})
-
+		}
 	},
 	toggleClass:function(className){
-		return this.each(function(){
+		/*if(className == undefined){
+				this.each(function(){
+
+				})
+		}else{*/
+			return this.each(function(){
 			if(this.classList.contains(className)){
 				this.classList.toggle(className);
 			}else{
 				this.classList.toggle(className);
-			}
-		})
+				}
+			})
+		// }
+		
 	}
 })
 	if ( typeof define === 'function' ){
