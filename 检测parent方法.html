@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>检测parent方法</title>
+    </head>
+    <body>
+    <div>
+    	<div id="dd">
+    		123
+    		<p>456</p>
+    		<p>QQQQ</p>
+    	</div>
+    </div>
+    <p>789</p>
+    <!-- <script src="jquery.js"></script> -->
+    <script src="js原生框架0.2.0.js"></script>
+    <script>
+    		var jq=$('p').parent();
+    		// var jq=$('p').parents();
+    		// var jq=$('html').parents();
+    		console.log(jq);
+    </script>
+    </body>
+</html>

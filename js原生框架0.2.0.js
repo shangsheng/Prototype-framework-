@@ -311,6 +311,33 @@
 				}
 			});
 			return itcast(itcast.unique(ret));
+		},
+		parent:function(){
+			var ret=[];
+			this.each(function(){
+				var node=this.parentNode;
+				while(node){
+					if(node.nodeType!==11){
+						ret.push(node);
+						break;
+					}
+					node=node.parentNode;
+				}
+			});
+			return itcast( itcast.unique( ret ) );
+		},
+		parents:function(){
+			var ret=[];
+			this.each(function(){
+				var parents=this.parentNode;
+				while(parents){
+					if(parents.nodeType===1){
+						ret.push(parents);
+					}
+					parents=parents.parentNode;
+				}
+			});
+			return itcast(itcast.unique(ret));
 		}
 
 	})
