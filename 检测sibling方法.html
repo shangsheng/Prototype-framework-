@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>检测sibling方法</title>
+    </head>
+    <body>
+    <ul>
+    	<li class="one">34567</li>
+    	<li>45678</li>
+    	<li>56789</li>
+    	<li id="one">678910</li>
+    	<li>78910J</li>
+    	<li class="one ">8910JQ</li>
+    	<li>910JQK</li>
+    	<li>10JQKA</li>
+    	<li class="A">AAAA</li>
+    </ul>
+    <!-- <script src="jquery.js"></script> -->
+    <script src="js原生框架0.2.0.js"></script>
+    <script>
+    var jq=$('li').siblings('.A' );
+    console.log(jq);
+    </script>
+    </body>
+</html>

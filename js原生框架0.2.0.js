@@ -338,6 +338,26 @@
 				}
 			});
 			return itcast(itcast.unique(ret));
+		},
+		siblings:function(next){
+			var ret=[];
+			// next=itcast(next).;
+			// console.log(next);
+			this.each(function (i,elem){
+				// console.log(this);
+				//得到itcast对象中的元素的父元素的第一个子元素
+				var n=(elem.parentNode || {}).firstChild;
+				console.log(n);
+				for(;n;n=n.nextSibling){
+					// a=itcast(n).attr();
+					if(n.nodeType===1 && n!==next){
+						console.log(n);
+						ret.push(n);
+					}
+				}
+				;
+			});
+			return itcast(itcast.unique(ret));
 		}
 
 	})
