@@ -8,6 +8,7 @@
 				width: 100px;
 				height: 100px;
 				background-color: hotpink;
+
 			}
         </style>
     </head>
@@ -16,7 +17,11 @@
     <script src="js原生框架0.3.0.js"></script>
     <script>
     $('div').on('click',function(){
-    	console.log(1);
+    	var jq=$(this).css('margin','10px').css({
+    		'height':'200px',
+    		'backgroundColor':'yellow'
+    	}).css('width');
+    	console.log(jq);
     })
     </script>
     </body>

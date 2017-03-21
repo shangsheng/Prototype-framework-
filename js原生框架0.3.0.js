@@ -503,6 +503,24 @@ itcast.fn.extend({
 				this.classList.toggle(className);
 				}
 			})
+	},
+	css:function(name,value){
+		if(value == undefined){
+			if(typeof name ==='object'){
+				this.each(function (i,elem){
+					for(var k in name){
+					(elem.nodeType===1) &&	(elem.style[k]=name[k]);
+					}
+				})
+			}else{
+				return this.length===0 ? undefined : global.getComputedStyle(this[0])[name];
+			}
+		}else{
+			this.each(function(){
+				this.style[name]=value;
+			})
+		}
+		return this;
 	}
 });
 //事件模块
