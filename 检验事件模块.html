@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>检验事件模块</title>
+        <style>
+			.dd{
+				width: 100px;
+				height: 100px;
+				background-color: hotpink;
+			}
+        </style>
+    </head>
+    <body>
+    <div class="dd"></div>
+    <script src="js原生框架0.3.0.js"></script>
+    <script>
+    $('div').on('click',function(){
+    	console.log(1);
+    })
+    </script>
+    </body>
+</html>

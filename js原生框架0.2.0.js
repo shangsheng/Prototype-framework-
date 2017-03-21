@@ -504,6 +504,22 @@ itcast.fn.extend({
 				}
 			})
 	}
+});
+//事件模块
+itcast.fn.extend({
+	//将itcast对象上所有DOM元素的 通过on方法添加type类型事件处理callback函数
+	on:function(type,callback){
+		return this.each(function(){
+			this.addEventListener(type,callback);
+		})
+	}
+});
+//封装事件方法
+itcast.each(('click dblclick mouseup mouseout mousedown mousemove mouseenter mouseleave '+
+	'keyup keydown keypress focus blur').split(' '),function (i,type){
+	itcast.fn[type]=function(callback){
+		return this.on(type,callback);
+	}
 })
 	if ( typeof define === 'function' ){
     define( function (){
