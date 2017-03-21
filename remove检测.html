@@ -3,18 +3,30 @@
     <head>
         <meta charset="utf-8">
         <title>remove检测</title>
+        <style>
+            .cc{
+                width: 100px;
+                height: 100px;
+                background-color: hotpink;
+            }
+        </style>
     </head>
     <body>
-    <div>
+    <div class="cc">
     	<p>123</p>
     </div>
-    <p>456</p>
-    <script src="jquery.js"></script>
+    <p class="p">456</p>
+    <!-- <script src="jquery.js"></script> -->
     <!-- <script src="js原生框架0.1.0.js"></script> -->
+    <script src="js原生框架0.3.0.js"></script>
     <script>
     // var jq=$('p').remove();
-    var jq=$('p').empty();
+    // var jq=$('p').empty();
+    $('.p').click(function(){
+           var jq=$('div').toggleClass('cc dd');
     console.log(jq);
+    })
+ 
     </script>
     </body>
 </html>

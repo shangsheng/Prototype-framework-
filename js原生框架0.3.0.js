@@ -481,28 +481,23 @@ itcast.fn.extend({
 		return this;
 	},
 	removeClass:function(className){
-		if(className == undefined){
-			return this.each(function(){
-				this.className="";
-			})
-
-		}else{
-			return this.each(function(){
-			if(this.classList.contains(className)){
-				this.classList.remove(className);
-			}
+		
+		return this.each(function(){
+			className==undefined ? this.className="" : this.classList.remove(className);
 		})
-		}
 	},
 	toggleClass:function(className){
-		
-			return this.each(function(){
-			if(this.classList.contains(className)){
-				this.classList.toggle(className);
+			var $this=this;
+			itcast(className.split(' ')).each(function (i,elem){
+			 $this.each(function(){
+			if(this.classList.contains(elem)){
+				this.classList.toggle(elem);
 			}else{
-				this.classList.toggle(className);
+				this.classList.toggle(elem);
 				}
+			  })
 			})
+			return $this;
 	},
 	css:function(name,value){
 		if(value == undefined){
@@ -529,6 +524,11 @@ itcast.fn.extend({
 	on:function(type,callback){
 		return this.each(function(){
 			this.addEventListener(type,callback);
+		})
+	},
+	off:function(type,callback){
+		return this.each(function(){
+			this.removeEventListener(type,callback);
 		})
 	}
 });
