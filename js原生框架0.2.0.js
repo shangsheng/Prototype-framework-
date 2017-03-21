@@ -230,7 +230,7 @@
 			this.each(function (i,elem){
 				node=elem.nextSibling;
 				while(node){
-					if(node.nodeType===1){
+					if((node.nodeType===1) && (node!=null)){
 						ret.push(node);
 						break;
 					}
@@ -290,7 +290,7 @@
 			 this.each(function (i,elem){
 				var node=elem.previousSibling;//获取上一个同级元素
 				while(node){
-					if(node.nodeType===1){
+					if( (node.nodeType===1) && (node!=null)){
 						ret.push(node);
 						break;
 					}
@@ -339,19 +339,18 @@
 			});
 			return itcast(itcast.unique(ret));
 		},
-		siblings:function(next){
+		siblings:function(){
 			var ret=[];
-			// next=itcast(next).;
-			// console.log(next);
+			
 			this.each(function (i,elem){
-				// console.log(this);
+				
 				//得到itcast对象中的元素的父元素的第一个子元素
 				var n=(elem.parentNode || {}).firstChild;
-				console.log(n);
+			
 				for(;n;n=n.nextSibling){
-					// a=itcast(n).attr();
-					if(n.nodeType===1 && n!==next){
-						console.log(n);
+					
+					if((n.nodeType===1) && (n!==elem)){
+						
 						ret.push(n);
 					}
 				}
@@ -430,7 +429,6 @@ itcast.fn.extend({
 					this.value=value;
 				})
 			}
-
 		},
 		html:function(html){
 			if(html == undefined){
@@ -443,19 +441,21 @@ itcast.fn.extend({
 		},
 		text:function(txt){
 			if(txt == undefined){
+				var ret='';
 				if(this.length===0){
 					return undefined;
 				}else{
 					this.each(function(index, elem) {
-						elem.textContent;
+						ret+=elem.textContent;
 					});
+					return ret;
 				}
 			}else{
 				this.each(function(){
 					this.textContent=txt;
 				})
 			}
-			return this;
+			
 		}
 });
 //样式模块
@@ -495,11 +495,7 @@ itcast.fn.extend({
 		}
 	},
 	toggleClass:function(className){
-		/*if(className == undefined){
-				this.each(function(){
-
-				})
-		}else{*/
+		
 			return this.each(function(){
 			if(this.classList.contains(className)){
 				this.classList.toggle(className);
@@ -507,8 +503,6 @@ itcast.fn.extend({
 				this.classList.toggle(className);
 				}
 			})
-		// }
-		
 	}
 })
 	if ( typeof define === 'function' ){
