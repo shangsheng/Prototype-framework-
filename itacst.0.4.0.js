@@ -542,6 +542,115 @@ itcast.each(('click dblclick mouseup mouseout mousedown mousemove mouseenter mou
 	itcast.fn[type]=function(callback){
 		return this.on(type,callback);
 	}
+});
+//Ajax模块
+//兼容创建对象
+function createRequest(){
+	return window.XMLHttpRequest ?
+			new window.XMLHttpRequest() :
+			new window.ActiveXObject();
+}
+//格式化数据
+function formtData(data){
+	var k,
+		ret=[];
+		for(k in data){
+			ret.push(global.encodeURIComponent(k)+
+				'='+
+				global.encodeURIComponent(data[k]));
+		}
+		return ret.join("&");
+}
+//给工厂函数添加工具类型方法
+itcast.extend({
+	//ajax的默认值
+	ajaxSettings:{
+		url:'',
+		type:'get',
+		data:{},
+		dataType:'json',
+		success:null,
+		fail:null,
+		async:true,
+		contentType:'application/x-www-form-urlencoded',
+		jsonp:'callback',
+		jsonpCallback:'',
+		timeout:0
+	},
+	ajax:function(config){
+		//过滤无效值
+		if(!config || !config.url){
+			return;
+		}
+		//用户的配置信息
+    //把用户传入的对象和默认的对象合并到统一个对象中
+		var countext={};
+		itcast.extend(countext,itcast.ajaxSettings,config);
+		if(countext.dataType.toLowerCase()==='jsonp'){
+			//1创建对象
+			var scriptElem=document.createElement('script');
+			var headElem=document.getElementsByTagName('head')[0];
+			headElem.appendChild(scriptElem);
+			//2.创建全局函数的名字
+			var callbackName=countext.jsonpCallback ||
+				('jsonp_'+Math.random()).replace(".","");
+				//给data对象添加一个属性，为jsonp对应的值
+			countext.data[countext.jsonp]=callbackName;
+			global[callbackName]=function (data){
+				//成功
+				countext.success&&countext.success(data);
+				//当成功时清除时间监听器
+				global.clearTimeout(scriptElem.timer);
+				//为了减少页面中的script标签过多问题，和和全局函数过多的问题
+				headElem.removeChild(scriptElem);
+				delete global[callbackName];
+				// console.log(countext.url);
+			}
+			//3.初始化数据
+			countext.url+="?"+formtData(countext.data);
+			// console.log(countext.url);
+			// 4.监听请求状态
+			if(countext.timeout){
+				scriptElem.timer=global.setTimeout(function(){
+					countext.fali && countext.fali({'message':'请求超时'});
+					headElem.removeChild(scriptElem);
+					delete global[callbackName];
+				}, countext.timeout);
+			}
+			scriptElem.src=countext.url;
+		}else{
+			// 1.创建请求对象
+			var xhr=createRequest(),
+			//初始化数据
+				postData;
+				postData=formtData(countext.data)
+				//判断为get方式时内容在url地址后面
+				if(countext.type.toLowerCase()==='get'){
+					countext.url+="?"+postData;
+					postData=null;
+				}
+				//2.与服务器建立连接
+				xhr.open(countext.type.toLowerCase(),countext.url,countext.async);
+				(countext.type.toLowerCase()==='post')&&
+						(xhr.setRequestHeader('Content-Type',countext.contentType));
+			//3.监听状态
+			xhr.onreadystatechange=function(){
+					var readyState=xhr.readyState,
+					status=xhr.status;
+					if(readyState===4){
+						if(status>=200&& status<300 || status===304){
+							var data=countext.dataType.toLowerCase()==="josn"?
+								JSON.parent(xhr.responseText) : xhr.responseText;
+							countext.success&&countext.success(data,countext,xhr);
+						}else{
+							countext.fail&&countext.fail({"message":"请求失败"},countext,xhr);
+						}
+					}
+			}
+			//4.发送请求
+			xhr.send(postData);
+		}
+	}
 })
 	if ( typeof define === 'function' ){
     define( function (){

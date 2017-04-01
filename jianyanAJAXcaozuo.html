@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>检验Ajax操作</title>
+    </head>
+    <body>
+    <div id="list">
+    	
+    </div>
+    <script src="itacst.0.4.0.js"></script>
+    <script>
+    $.ajax({
+    	url: 'http://www.study.com/JSyuanshengkuangjia/JSyuanshengkuangjia/JSyuanshengkuangjiagit/Prototype-framework-/jsonp.php',
+    	type: 'get',
+    	dataType: 'jsonp',
+    	data: {'name':'liuyifei'},
+    	// jsonpCallback:'callback',
+    	timeout:1000,
+    	success:function(data){
+    		console.log(data);
+    	},
+    	fail:function(ear){
+    		console.log(ear.message);
+    	}
+    })
+   var a= function(){
+    console.log(1);
+   }
+    function f(){
+       return new a= function(){
+        console.log(2)
+       };
+    }
+    
+    f();
+    a();
+    </script>
+    </body>
+</html>

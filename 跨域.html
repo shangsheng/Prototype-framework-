@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+				.main{
+					margin: 100px auto;
+					width: 700px;
+
+				}
+				input[type="text"]{
+					width: 500px;
+					height: 50px;
+					outline-style: none;
+				}
+				input[type="button"]{
+					width:100px;
+					height: 50px;
+				}
+				.message{
+					border:1px solid #ccc;
+					width: 500px;
+					 display: none;
+					font-size: 20px;
+				}
+				.message li{
+					list-style: none;
+					margin: 0;
+					padding: 1px;
+				}
+				.show{
+             display: block;
+        	}
+        </style>
+        <!-- <script src="itacst.0.4.0.js"></script> -->
+        <script src="jquery.js"></script>
+        <script>
+       $(function(){
+       	$("#keywods").keyup(function(event) {
+       		var keys=$("#keywods").val();
+       		
+       		if(keys.length>0){
+       			$.ajax({
+       			// url:"https://sug.so.360.cn/suggest?callback=getInfo&encodein=utf-8&encodeout=utf-8&format=json&fields=word,obdata&word="+keys,
+            url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+keys+"&json=1&p=3&sid=1456_21097_17001_20718&req=2&csor=1&cb=getInfo",
+       			type:"get",
+       			// data:{callback:'JSON_CALLBACK'},
+       			dataType:"jsonp",
+       			jsonpCallback:"getInfo",
+       			success:function(data){
+       				$(".message").html("");
+              console.log(data);
+       				// for(var i=0;i<data.result.length;i++){
+       				// 	var list=document.createElement("li");
+       				// 	list.innerHTML=data.result[i].word;
+       				
+       				// $(".message").append(list).addClass('show');
+       					
+       				// }
+             for(var i=0;i<data.g.length;i++){
+               var list=document.createElement("li");
+               list.innerHTML=data.g[i].q;
+              
+               $(".message").append(list).addClass('show');
+                
+               } 
+       				
+       			},
+       			fail:function(data){
+       				cnsole.log(data);
+       			}
+       		})
+       		}else{
+       			$(".message").removeClass('show');
+       		}
+       	});
+       })
+        </script>
+    </head>
+    <body>
+    <div class="main" >
+    	<input type="text" id="keywods" ><input type="button" value="搜索歌曲">
+    	<div class="message" >
+    		
+    	</div>
+    </div>
+    </body>
+</html>
